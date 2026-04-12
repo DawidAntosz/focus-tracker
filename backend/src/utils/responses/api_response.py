@@ -1,9 +1,12 @@
-from typing import Optional, Any
+from typing import Optional, TypeVar, Generic
 from pydantic import BaseModel
 from .enums import ResponseStatus
 
 
-class ApiResponse(BaseModel):
+T = TypeVar("T")
+
+
+class ApiResponse(BaseModel, Generic[T]):
     status: ResponseStatus = ResponseStatus.SUCCESS
     message: str
-    data: Optional[Any] = None
+    data: Optional[T] = None
