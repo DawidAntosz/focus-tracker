@@ -22,7 +22,7 @@ class BaseRepository:
             session.commit()
         except Exception as e:
             session.rollback()
-            log.exception("Database error in %s", self.__class__.__name__)
+            log.exception("Database error in %s: %s", self.__class__.__name__, e)
             raise
         finally:
             session.close()

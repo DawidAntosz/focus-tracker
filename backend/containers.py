@@ -10,11 +10,8 @@ from src.database.repositories import UserRepository, TaskRepository
 class Container(containers.DeclarativeContainer):
     wiring_config = containers.WiringConfiguration(
         modules=[
-            "src.api.routers.motion.router",
-            "src.api.routers.service.router",
-            "src.api.routers.settings.router",
-            "src.api.routers.cnc_programs.router",
-            "src.api.routers.reports.router"
+            "src.api.routers.user",
+            "src.api.routers.task"
         ]
     )
 

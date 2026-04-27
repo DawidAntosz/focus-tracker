@@ -6,5 +6,8 @@ class TaskService:
     def __init__(self):
         pass
 
+    def get_task_by_id(self):
+        pass
+
     def get_user_tasks(self):
         pass
