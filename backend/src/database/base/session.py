@@ -1,9 +1,7 @@
-from pathlib import Path
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.engine import URL
 from src.utils.config import Config, EnvKey
-from .base import Base
 
 import logging
 log = logging.getLogger(__name__)
@@ -36,5 +34,11 @@ class DatabaseSession:
             bind=self.engine
         )
 
-    def create_tables(self):
-        Base.metadata.create_all(bind=self.engine)
+    def check_connection(self):
+        try:
+            with self.engine.connect() as connection:
+                connection.execute(text("SELECT 1"))
+            log.info("Database connection check successful.")
+        except Exception as e:
+            log.error(f"Database connection check failed: {e}")
+            raise e
