@@ -1,0 +1,9 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: react-test-app
+    ports:
+      - "3000:80"
+    restart: on-failure
